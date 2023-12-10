@@ -1,0 +1,8 @@
+.bracket-svg {
+    position: static !important;
+    height: auto !important;
+}
+
+.tournament-bracket--scrollable {
+    height: auto !important;
+}

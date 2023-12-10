@@ -1,0 +1,28 @@
+{
+    "extends": ["@beuluis/eslint-config"],
+    "root": true,
+    "overrides": [
+        {
+            "extends": ["@beuluis/eslint-config/typescript"],
+            "files": "*.{ts,tsx}",
+            "parserOptions": {
+                "project": "tsconfig.json"
+            },
+            "rules": {
+                "unicorn/prefer-string-replace-all": "off"
+            }
+        },
+        {
+            "extends": ["@beuluis/eslint-config/react"],
+            "files": "*.tsx"
+        },
+        {
+            "extends": ["@beuluis/eslint-config/json"],
+            "files": "*.json"
+        },
+        {
+            "extends": ["@beuluis/eslint-config/yaml"],
+            "files": "*.{yaml,yml}"
+        }
+    ]
+}
