@@ -13,7 +13,7 @@ on:
 jobs:
   deploy:
     # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsuses
-    uses: Good-Games-Munich/reusable-workflows/.github/workflows/production-archive-release@main
+    uses: Good-Games-Munich/reusable-workflows/.github/workflows/production-archive-release.yml@main
     # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idwith
     with:
       build_command: npm run build
