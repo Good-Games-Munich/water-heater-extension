@@ -1,0 +1,29 @@
+{
+  "extensionName": {
+    "message": "Water Heater"
+  },
+  "extensionDescription": {
+    "message": "A browser extension for Good Games Munich to fix various sites for ease of use and help with TO stuff."
+  },
+  "openDashboard": {
+    "message": "Open Dashboard"
+  },
+  "navigationHome": {
+    "message": "Home"
+  },
+  "navigationSeeding": {
+    "message": "Seeding"
+  },
+  "navigationDiscord": {
+    "message": "Discord"
+  },
+  "navigationWiki": {
+    "message": "Wiki"
+  },
+  "navigationVault": {
+    "message": "Vault"
+  },
+  "seedingTitle": {
+    "message": "Participant seeding"
+  }
+}

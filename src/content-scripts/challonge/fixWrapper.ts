@@ -1,8 +1,4 @@
-import css from './fixWrapper.css';
+/* eslint-disable import/no-unassigned-import */
+import './fixWrapper.css';
 
-const head = document.head || document.querySelectorAll('head')[0];
-const style = document.createElement('style');
-
-head.appendChild(style);
-
-style.appendChild(document.createTextNode(css));
+// ? This is to force @crxjs/vite-plugin to include the CSS file in the build
