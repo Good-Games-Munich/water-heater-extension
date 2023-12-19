@@ -1,29 +1,29 @@
-import { type Item, useItemsStore } from '../hooks/useItemsStore';
+import { type Participant, useParticipantsStore } from '../hooks/stores/useParticipantsStore';
 import { EllipsisHorizontalIcon, PencilIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { TextInput } from 'flowbite-react';
 import { useState } from 'react';
 import { Draggable, type DraggableProps } from 'react-beautiful-dnd';
 
 export const DraggableEditListItem = ({
-    item,
+    participant,
     ...draggableProperties
-}: Omit<DraggableProps, 'children'> & { readonly item: Item }) => {
+}: Omit<DraggableProps, 'children'> & { readonly participant: Participant }) => {
     const [isEditing, setIsEditing] = useState(false);
-    const [value, setValue] = useState(item.content);
+    const [tag, setTag] = useState(participant.tag);
 
-    const { update, remove } = useItemsStore();
+    const { update, remove } = useParticipantsStore();
 
     const handleTextEditAction = () => {
         setIsEditing(true);
     };
 
     const handleEditDone = () => {
-        const trimmedValue = value.trim();
-        if (trimmedValue === '') {
+        const trimmedTag = tag.trim();
+        if (trimmedTag === '') {
             return;
         }
 
-        update(item.id, trimmedValue);
+        update(participant.id, trimmedTag);
         setIsEditing(false);
     };
 
@@ -34,8 +34,8 @@ export const DraggableEditListItem = ({
     };
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const newValue = event.target.value;
-        setValue(newValue);
+        const newTag = event.target.value;
+        setTag(newTag);
     };
 
     return (
@@ -64,12 +64,13 @@ export const DraggableEditListItem = ({
                                     onBlur={handleEditDone}
                                     onChange={handleChange}
                                     onKeyDown={handleKeyDown}
-                                    value={value}
+                                    placeholder={chrome.i18n.getMessage('inputTagPlaceholder')}
+                                    value={tag}
                                 />
                             ) : (
                                 // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events
                                 <p className="cursor-pointer" onClick={handleTextEditAction}>
-                                    {value}
+                                    {tag}
                                 </p>
                             )}
                         </div>
@@ -77,7 +78,7 @@ export const DraggableEditListItem = ({
                             <PencilIcon height="24" onClick={handleTextEditAction} />
                         </div>
                         <div className="cursor-pointer shrink-0 invisible group-hover:visible">
-                            <XMarkIcon height="24" onClick={() => remove(item.id)} />
+                            <XMarkIcon height="24" onClick={() => remove(participant.id)} />
                         </div>
                     </div>
                 </li>

@@ -25,5 +25,8 @@
   },
   "seedingTitle": {
     "message": "Participant seeding"
+  },
+  "inputTagPlaceholder": {
+    "message": "Player tag"
   }
 }
