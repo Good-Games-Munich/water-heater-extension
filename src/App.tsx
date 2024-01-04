@@ -1,20 +1,23 @@
-import { SidebarNavigation } from './components/SidebarNavigation';
-import { SeedingList } from './pages/SeedingList';
-import { Flowbite } from 'flowbite-react';
+import { Navigation } from '@/components/Navigation';
+import { ThemeToggle } from '@/components/ThemeToggle';
+import { Home } from '@/pages/Home';
+import { Seeding } from '@/pages/Seeding';
+import { ThemeProvider } from '@/providers/theme.provider';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 export const App = () => (
-    <Flowbite>
-        <div className="w-full flex-nowrap flex sm:flex-nowrap flex-grow font-medium text-text-light dark:text-text-dark bg-background-light dark:bg-background-dark">
-            <BrowserRouter>
-                <SidebarNavigation />
-                <main className="w-full h-full flex-grow p-5 overflow-auto" role="main">
-                    <Routes>
-                        <Route element={<div />} path="/" />
-                        <Route element={<SeedingList />} path="seeding" />
-                    </Routes>
-                </main>
-            </BrowserRouter>
-        </div>
-    </Flowbite>
+    <BrowserRouter>
+        <ThemeProvider defaultTheme="system">
+            <div className="absolute right-4 z-50">
+                <ThemeToggle />
+            </div>
+            <div className="h-auto container">
+                <Navigation />
+                <Routes>
+                    <Route element={<Home />} path="/" />
+                    <Route element={<Seeding />} path="/seeding" />
+                </Routes>
+            </div>
+        </ThemeProvider>
+    </BrowserRouter>
 );

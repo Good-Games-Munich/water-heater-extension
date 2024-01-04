@@ -5,6 +5,11 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
     plugins: [react(), crx({ manifest, contentScripts: { injectCss: true } })],
+    resolve: {
+        alias: {
+            '@': '/src',
+        },
+    },
     build: {
         sourcemap: true,
         rollupOptions: {

@@ -50,10 +50,7 @@ Follow [dev-basics](https://crxjs.dev/vite-plugin/getting-started/react/dev-basi
 
 - Fix Wrapper widths on challonge.com
 - Fix height issues on challonge.com modules
-
-## TODOs:
-
-- [ ] Add browser extension support for group seeding
+- Add UI for Seeding
 
 <!-- CONTRIBUTING -->
 

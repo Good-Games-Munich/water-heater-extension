@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-unassigned-import
-import './index.css';
-import { App } from './App';
+import '@/styles/global.css';
+import { App } from '@/App';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 

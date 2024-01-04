@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
@@ -14,13 +15,10 @@ interface Store {
     update: (id: string, tag: Participant['tag']) => void;
 }
 
-export const useParticipantsStore = create(
+export const useWeeklyParticipantsStore = create(
     persist<Store>(
         set => ({
-            participants: Array.from({ length: 100 }, (aba, abb) => ({
-                id: `participant-${abb}`,
-                tag: `Player ${abb}`,
-            })),
+            participants: [],
             reorder: (startIndex, endIndex) =>
                 set(state => {
                     const result = Array.from(state.participants);
@@ -52,7 +50,7 @@ export const useParticipantsStore = create(
                 set(state => {
                     const result = Array.from(state.participants);
                     result.unshift({
-                        id: `participant-${result.length}`,
+                        id: uuidv4(),
                         tag,
                     });
 
@@ -60,7 +58,7 @@ export const useParticipantsStore = create(
                 }),
         }),
         {
-            name: 'participants-storage', // unique name
+            name: 'weekly-participants-storage', // unique name
         },
     ),
 );

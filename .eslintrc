@@ -16,8 +16,13 @@
             "extends": ["@beuluis/eslint-config/react"],
             "files": "*.tsx",
             "rules": {
-                "react/forbid-component-props": "off"
+                "react/forbid-component-props": "off",
+                "react/prop-types": "off"
             }
+        },
+        {
+            "extends": ["@beuluis/eslint-config/node"],
+            "files": "*.js"
         },
         {
             "extends": ["@beuluis/eslint-config/json"],

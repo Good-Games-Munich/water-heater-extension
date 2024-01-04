@@ -1,17 +1,20 @@
-import { type Participant, useParticipantsStore } from '../hooks/stores/useParticipantsStore';
-import { EllipsisHorizontalIcon, PencilIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { TextInput } from 'flowbite-react';
+import { Input } from '@/components/ui/input';
+import {
+    type Participant,
+    useWeeklyParticipantsStore,
+} from '@/hooks/stores/useWeeklyParticipantsStore';
+import { MoreHorizontalIcon, PencilIcon, XIcon } from 'lucide-react';
 import { useState } from 'react';
 import { Draggable, type DraggableProps } from 'react-beautiful-dnd';
 
-export const DraggableEditListItem = ({
+export const DraggableEditSeedItem = ({
     participant,
     ...draggableProperties
 }: Omit<DraggableProps, 'children'> & { readonly participant: Participant }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [tag, setTag] = useState(participant.tag);
 
-    const { update, remove } = useParticipantsStore();
+    const { update, remove } = useWeeklyParticipantsStore();
 
     const handleTextEditAction = () => {
         setIsEditing(true);
@@ -47,18 +50,16 @@ export const DraggableEditListItem = ({
                     {...draggableProvided.dragHandleProps}
                 >
                     <div
-                        className={`group select-none p-4 rounded-lg flex items-center space-x-4 truncate hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 ${
-                            draggableSnapshot.isDragging
-                                ? 'border-2 border-primary-light dark:border-primary-dark bg-content-background-light dark:bg-content-background-dark'
-                                : ''
+                        className={`group select-none p-4 rounded-lg flex items-center space-x-4 truncate hover:bg-secondary ${
+                            draggableSnapshot.isDragging ? 'border-2 bg-background' : ''
                         }`}
                     >
                         <div className="shrink-0">
-                            <EllipsisHorizontalIcon height="24" />
+                            <MoreHorizontalIcon height="24" />
                         </div>
                         <div className="min-w-0 flex-1 h-7 flex items-center">
                             {isEditing ? (
-                                <TextInput
+                                <Input
                                     autoFocus
                                     className="w-full"
                                     onBlur={handleEditDone}
@@ -78,7 +79,7 @@ export const DraggableEditListItem = ({
                             <PencilIcon height="24" onClick={handleTextEditAction} />
                         </div>
                         <div className="cursor-pointer shrink-0 invisible group-hover:visible">
-                            <XMarkIcon height="24" onClick={() => remove(participant.id)} />
+                            <XIcon height="24" onClick={() => remove(participant.id)} />
                         </div>
                     </div>
                 </li>

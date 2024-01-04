@@ -1,24 +1,23 @@
 // eslint-disable-next-line import/no-unassigned-import
-import './index.css';
-import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
-import { Button, Flowbite } from 'flowbite-react';
+import '@/styles/global.css';
+import { Button } from '@/components/ui/button';
+import { ThemeProvider } from '@/providers/theme.provider';
+import { ExternalLinkIcon } from 'lucide-react';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 
 const App = () => (
-    <Flowbite>
-        <div className="flex items-center justify-center mx-auto w-64 bg-background-light p-4 dark:bg-background-dark">
+    <ThemeProvider defaultTheme="system">
+        <div className="flex justify-center w-64 p-4">
             <Button
-                onClick={async () =>
-                    await chrome.tabs.create({ url: chrome.runtime.getURL('index.html') })
-                }
-                outline
+                onClick={async () => await chrome.tabs.create({ url: chrome.runtime.getURL('/') })}
+                variant="outline"
             >
                 {chrome.i18n.getMessage('openDashboard')}
-                <ArrowTopRightOnSquareIcon className="ml-2 h-5 w-5" />
+                <ExternalLinkIcon className="ml-2 h-4 w-4" />
             </Button>
         </div>
-    </Flowbite>
+    </ThemeProvider>
 );
 
 const root = document.querySelector('#root');
