@@ -3,7 +3,7 @@
     "root": true,
     "overrides": [
         {
-            "extends": ["@beuluis/eslint-config/typescript"],
+            "extends": ["@beuluis/eslint-config/typescript", "@beuluis/eslint-config/browser", "@beuluis/eslint-config/i18next"],
             "files": "*.{ts,tsx}",
             "parserOptions": {
                 "project": "tsconfig.json"
@@ -14,7 +14,15 @@
         },
         {
             "extends": ["@beuluis/eslint-config/react"],
-            "files": "*.tsx"
+            "files": "*.tsx",
+            "rules": {
+                "react/forbid-component-props": "off",
+                "react/prop-types": "off"
+            }
+        },
+        {
+            "extends": ["@beuluis/eslint-config/node"],
+            "files": "*.js"
         },
         {
             "extends": ["@beuluis/eslint-config/json"],
