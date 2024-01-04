@@ -10,7 +10,9 @@ const App = () => (
     <ThemeProvider defaultTheme="system">
         <div className="flex justify-center w-64 p-4">
             <Button
-                onClick={async () => await chrome.tabs.create({ url: chrome.runtime.getURL('/') })}
+                onClick={async () =>
+                    await chrome.tabs.create({ url: chrome.runtime.getURL('index.html') })
+                }
                 variant="outline"
             >
                 {chrome.i18n.getMessage('openDashboard')}
