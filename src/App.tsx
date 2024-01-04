@@ -14,8 +14,8 @@ export const App = () => (
             <div className="h-auto container">
                 <Navigation />
                 <Routes>
-                    <Route element={<Home />} path="/" />
                     <Route element={<Seeding />} path="/seeding" />
+                    <Route element={<Home />} path="*" />
                 </Routes>
             </div>
         </ThemeProvider>
