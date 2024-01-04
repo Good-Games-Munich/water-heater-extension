@@ -1,6 +1,6 @@
 # Changelog
 
-## 2023-12-10 - 0.0.2
+## 2023-12-10 - 0.1.0
 
 -   Add translations
 -   Add seeding dashboard
