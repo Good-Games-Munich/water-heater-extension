@@ -1,5 +1,10 @@
 # Changelog
 
+## 2024-01-05 - 0.2.0
+
+-   Add ability to fetch from discord
+-   Add settings page
+-   Add payout page
 
 ## 2024-01-04 - 0.1.1
 
