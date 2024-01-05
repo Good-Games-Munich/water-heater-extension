@@ -9,8 +9,10 @@ export interface Participant {
 
 interface Store {
     add: (tag: Participant['tag']) => void;
+    bulkAdd: (tags: Array<Participant['tag']>) => void;
     participants: Participant[];
     remove: (id: string) => void;
+    removeAll: () => void;
     reorder: (startIndex: number, endIndex: number) => void;
     update: (id: string, tag: Participant['tag']) => void;
 }
@@ -46,12 +48,25 @@ export const useWeeklyParticipantsStore = create(
 
                     return { participants: result };
                 }),
+            removeAll: () => set({ participants: [] }),
             add: tag =>
                 set(state => {
                     const result = Array.from(state.participants);
                     result.unshift({
                         id: uuidv4(),
                         tag,
+                    });
+
+                    return { participants: result };
+                }),
+            bulkAdd: tags =>
+                set(state => {
+                    const result = Array.from(state.participants);
+                    tags.forEach(tag => {
+                        result.unshift({
+                            id: uuidv4(),
+                            tag,
+                        });
                     });
 
                     return { participants: result };

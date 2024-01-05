@@ -1,8 +1,8 @@
-import { assignPools } from '../../utils/seeding';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
 import { Separator } from '@/components/ui/separator';
 import { useWeeklyParticipantsStore } from '@/hooks/stores/useWeeklyParticipantsStore';
 import { useWeeklySeedingStore } from '@/hooks/stores/useWeeklySeedingStore';
+import { assignPools } from '@/utils/seeding';
 import { useMemo } from 'react';
 
 export const ChallongeGrouping = () => {

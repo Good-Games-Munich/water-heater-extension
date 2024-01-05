@@ -6,11 +6,13 @@ import {
     navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
 import {
+    BanknoteIcon,
     BookOpenTextIcon,
     HomeIcon,
     ListFilterIcon,
     LockIcon,
     MessageCircleHeartIcon,
+    SettingsIcon,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -28,6 +30,12 @@ export const Navigation = () => {
                     <Link className={navigationMenuTriggerStyle()} to="/seeding">
                         <ListFilterIcon className="mr-2 h-4 w-4" />
                         {chrome.i18n.getMessage('navigationSeeding')}
+                    </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                    <Link className={navigationMenuTriggerStyle()} to="/payout">
+                        <BanknoteIcon className="mr-2 h-4 w-4" />
+                        {chrome.i18n.getMessage('navigationPayout')}
                     </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
@@ -59,6 +67,12 @@ export const Navigation = () => {
                         <LockIcon className="mr-2 h-4 w-4" />
                         {chrome.i18n.getMessage('navigationVault')}
                     </NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                    <Link className={navigationMenuTriggerStyle()} to="/settings">
+                        <SettingsIcon className="mr-2 h-4 w-4" />
+                        {chrome.i18n.getMessage('navigationSettings')}
+                    </Link>
                 </NavigationMenuItem>
             </NavigationMenuList>
         </NavigationMenu>

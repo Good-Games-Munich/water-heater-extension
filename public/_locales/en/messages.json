@@ -14,6 +14,9 @@
   "navigationSeeding": {
     "message": "Seeding"
   },
+  "navigationPayout": {
+    "message": "Payout"
+  },
   "navigationDiscord": {
     "message": "Discord"
   },
@@ -23,14 +26,56 @@
   "navigationVault": {
     "message": "Vault"
   },
+  "navigationSettings": {
+    "message": "Settings"
+  },
+  "settingsTitle": {
+    "message": "Settings"
+  },
+  "settingsGuildIdLabel": {
+    "message": "Guild ID"
+  },
+  "settingsGuildIdPlaceholder": {
+    "message": "Guild ID"
+  },
+  "settingsGuildIdDescription": {
+    "message": "The ID of the Discord guild you want to use the extension for."
+  },
+  "settingsReset": {
+    "message": "Reset"
+  },
+  "settingsSubmit": {
+    "message": "Save"
+  },
   "homeTitle": {
     "message": "Welcome TO!"
   },
   "homeDescription": {
     "message": "Hey there! This is a little browser extension that fixes some layout issues for some pages, helps you with the organisation of your tournaments and more!"
   },
+  "payoutTitle": {
+    "message": "Calculate Payout"
+  },
+  "payoutRemainingLabel": {
+    "message": "Remaining"
+  },
   "seedingTitle": {
     "message": "Participant seeding"
+  },
+  "seedingAddParticipantDescription": {
+    "message": "Add participant"
+  },
+  "seedingRemoveAllParticipantsDescription": {
+    "message": "Remove all participants from seeding"
+  },
+  "seedingFetchDiscordDescription": {
+    "message": "Fetch participants from Discord"
+  },
+  "seedingDiscordReplaceAction": {
+    "message": "Replace"
+  },
+  "seedingDiscordAddAction": {
+    "message": "Add"
   },
   "seedingGroups": {
     "message": "Groups"

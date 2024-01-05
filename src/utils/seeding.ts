@@ -1,4 +1,4 @@
-import type { Participant } from '../hooks/stores/useWeeklyParticipantsStore';
+import type { Participant } from '@/hooks/stores/useWeeklyParticipantsStore';
 
 interface AssignedParticipant {
     seed: number;
