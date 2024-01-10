@@ -1,3 +1,4 @@
+import { useToast } from '../ui/use-toast';
 import { DraggableEditSeedItem } from '@/components/Seeding/DraggableEditSeedItem';
 import { StrictModeDroppable } from '@/components/StrictModeDroppable';
 import { Button } from '@/components/ui/button';
@@ -9,18 +10,19 @@ import { useSettingsStore } from '@/hooks/stores/useSettingsStore';
 import { useWeeklyParticipantsStore } from '@/hooks/stores/useWeeklyParticipantsStore';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { BotIcon, PlusCircleIcon, XIcon } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { BotIcon, PlusCircleIcon, XCircleIcon } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 import { DragDropContext, type DropResult } from 'react-beautiful-dnd';
 
 export const DragAndDropSeedingList = () => {
+    const { toast } = useToast();
     const { participants, reorder, add, removeAll, bulkAdd } = useWeeklyParticipantsStore();
     const { settings } = useSettingsStore();
 
     const [tag, setTag] = useState<string>('');
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const { refetch } = useQuery({
+    const { refetch, error, isError } = useQuery({
         queryKey: [settings.guildId, 'weekly', 'participants'],
         queryFn: async () =>
             await axios
@@ -28,6 +30,16 @@ export const DragAndDropSeedingList = () => {
                 .then(async response => response.data),
         enabled: false,
     });
+
+    useEffect(() => {
+        if (isError) {
+            toast({
+                title: 'Error',
+                description: error.message,
+                variant: 'destructive',
+            });
+        }
+    }, [error, toast, isError]);
 
     const fetchParticipants = async (): Promise<string[]> => {
         const fetchedParticipants = (await refetch()).data;
@@ -44,8 +56,9 @@ export const DragAndDropSeedingList = () => {
     };
 
     const onDiscordReplace = async () => {
+        const newParticipants = await fetchParticipants();
         removeAll();
-        bulkAdd(await fetchParticipants());
+        bulkAdd(newParticipants);
     };
 
     const onDiscordAdd = async () => {
@@ -91,6 +104,11 @@ export const DragAndDropSeedingList = () => {
                             <CardHeader className="border-b">
                                 <CardTitle>{chrome.i18n.getMessage('seedingTitle')} </CardTitle>
                                 <CardDescription className="flex items-center">
+                                    <span className="mr-2 whitespace-nowrap">
+                                        {chrome.i18n.getMessage('seedingTotalParticipants', [
+                                            participants.length.toString(),
+                                        ])}
+                                    </span>
                                     <Input
                                         className="mr-2"
                                         onChange={handleChange}
@@ -116,7 +134,7 @@ export const DragAndDropSeedingList = () => {
                                     </HoverCard>
                                     <HoverCard>
                                         <HoverCardTrigger>
-                                            <XIcon
+                                            <XCircleIcon
                                                 className="cursor-pointer ml-2"
                                                 onClick={removeAll}
                                             />

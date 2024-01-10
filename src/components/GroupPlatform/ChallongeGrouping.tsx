@@ -1,3 +1,4 @@
+import { useSettingsStore } from '../../hooks/stores/useSettingsStore';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
 import { Separator } from '@/components/ui/separator';
 import { useWeeklyParticipantsStore } from '@/hooks/stores/useWeeklyParticipantsStore';
@@ -6,14 +7,15 @@ import { assignPools } from '@/utils/seeding';
 import { useMemo } from 'react';
 
 export const ChallongeGrouping = () => {
+    const { settings } = useSettingsStore();
     const { participants } = useWeeklyParticipantsStore();
     const {
         weeklySeeding: { seedingWeeklyGroups },
     } = useWeeklySeedingStore();
 
     const pools = useMemo(
-        () => assignPools(participants, seedingWeeklyGroups),
-        [participants, seedingWeeklyGroups],
+        () => assignPools(participants, seedingWeeklyGroups, settings.fillerTag),
+        [participants, seedingWeeklyGroups, settings.fillerTag],
     );
 
     return (

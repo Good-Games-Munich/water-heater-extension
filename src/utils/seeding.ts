@@ -8,6 +8,7 @@ interface AssignedParticipant {
 export const assignPools = (
     participants: Participant[],
     numberGroups: number,
+    fillerTag: string,
 ): AssignedParticipant[][] => {
     const groups: AssignedParticipant[][] = Array.from({ length: numberGroups }, () => []);
 
@@ -28,6 +29,21 @@ export const assignPools = (
             groupIndex = 0;
             direction = 1;
         }
+    }
+
+    // If the number of participants is odd, add an extra participant to the group with the least participants
+    if (participants.length % 2 !== 0) {
+        let minSize = groups[0].length;
+        let minIndex = 0;
+
+        for (let index = 1; index < groups.length; index++) {
+            if (groups[index].length < minSize) {
+                minSize = groups[index].length;
+                minIndex = index;
+            }
+        }
+
+        groups[minIndex].push({ tag: fillerTag, seed: participants.length + 1 });
     }
 
     return groups;

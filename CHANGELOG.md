@@ -1,5 +1,12 @@
 # Changelog
 
+## 2024-01-10 - 0.3.0
+
+-   Add player filler to seed
+-   Add total player count
+-   Add checkbox to seed for attendance or something else
+-   Better error handling
+
 ## 2024-01-05 - 0.2.0
 
 -   Add ability to fetch from discord

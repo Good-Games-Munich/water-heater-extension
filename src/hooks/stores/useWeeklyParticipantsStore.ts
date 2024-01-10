@@ -4,6 +4,7 @@ import { persist } from 'zustand/middleware';
 
 export interface Participant {
     id: string;
+    payed: boolean;
     tag: string;
 }
 
@@ -14,7 +15,7 @@ interface Store {
     remove: (id: string) => void;
     removeAll: () => void;
     reorder: (startIndex: number, endIndex: number) => void;
-    update: (id: string, tag: Participant['tag']) => void;
+    update: (id: string, fields: Partial<Participant>) => void;
 }
 
 export const useWeeklyParticipantsStore = create(
@@ -28,22 +29,23 @@ export const useWeeklyParticipantsStore = create(
                     result.splice(endIndex, 0, removed);
                     return { participants: result };
                 }),
-            update: (id, tag) =>
-                set(state => {
-                    const result = Array.from(state.participants);
-                    const participant = result.find(checkItem => checkItem.id === id);
-                    if (participant) {
-                        participant.tag = tag;
-                    }
 
-                    return { participants: result };
-                }),
             remove: id =>
                 set(state => {
                     const result = Array.from(state.participants);
                     const index = result.findIndex(checkItem => checkItem.id === id);
                     if (index !== -1) {
                         result.splice(index, 1);
+                    }
+
+                    return { participants: result };
+                }),
+            update: (id, fields) =>
+                set(state => {
+                    const result = Array.from(state.participants);
+                    const index = result.findIndex(checkItem => checkItem.id === id);
+                    if (index !== -1) {
+                        result[index] = { ...result[index], ...fields };
                     }
 
                     return { participants: result };
@@ -55,6 +57,7 @@ export const useWeeklyParticipantsStore = create(
                     result.unshift({
                         id: uuidv4(),
                         tag,
+                        payed: false,
                     });
 
                     return { participants: result };
@@ -66,6 +69,7 @@ export const useWeeklyParticipantsStore = create(
                         result.unshift({
                             id: uuidv4(),
                             tag,
+                            payed: false,
                         });
                     });
 

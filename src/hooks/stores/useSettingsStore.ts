@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 export interface Settings {
+    fillerTag: string;
     guildId: string;
 }
 
@@ -15,6 +16,7 @@ export const useSettingsStore = create(
         set => ({
             settings: {
                 guildId: '667124403695517741',
+                fillerTag: 'Bye',
             },
             update: settings => set(state => ({ settings: { ...state.settings, ...settings } })),
         }),
