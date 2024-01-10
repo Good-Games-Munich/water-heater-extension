@@ -31,19 +31,22 @@ export const assignPools = (
         }
     }
 
-    // If the number of participants is odd, add an extra participant to the group with the least participants
-    if (participants.length % 2 !== 0) {
-        let minSize = groups[0].length;
-        let minIndex = 0;
-
-        for (let index = 1; index < groups.length; index++) {
-            if (groups[index].length < minSize) {
-                minSize = groups[index].length;
-                minIndex = index;
-            }
+    // Find the size of the largest group
+    let maxSize = groups[0].length;
+    for (const group of groups) {
+        if (group.length > maxSize) {
+            maxSize = group.length;
         }
+    }
 
-        groups[minIndex].push({ tag: fillerTag, seed: participants.length + 1 });
+    // Add filler participants to the groups that have fewer participants
+    for (const group of groups) {
+        while (group.length < maxSize) {
+            group.push({
+                tag: fillerTag,
+                seed: participants.length + 1 + group.length,
+            });
+        }
     }
 
     return groups;
