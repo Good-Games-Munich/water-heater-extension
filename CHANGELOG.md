@@ -1,5 +1,9 @@
 # Changelog
 
+## 2024-01-10 - 0.3.1
+
+-   Fix player filler to fill to largest group and not odd size
+
 ## 2024-01-10 - 0.3.0
 
 -   Add player filler to seed
