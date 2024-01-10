@@ -17,6 +17,7 @@ import { z } from 'zod';
 
 const formSchema = z.object({
     guildId: z.string(),
+    fillerTag: z.string(),
 });
 
 export const Settings = () => {
@@ -61,6 +62,29 @@ export const Settings = () => {
                                     </FormControl>
                                     <FormDescription>
                                         {chrome.i18n.getMessage('settingsGuildIdDescription')}
+                                    </FormDescription>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="fillerTag"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>
+                                        {chrome.i18n.getMessage('settingsFillerTagLabel')}
+                                    </FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            placeholder={chrome.i18n.getMessage(
+                                                'settingsFillerTagPlaceholder',
+                                            )}
+                                            {...field}
+                                        />
+                                    </FormControl>
+                                    <FormDescription>
+                                        {chrome.i18n.getMessage('settingsFillerTagDescription')}
                                     </FormDescription>
                                     <FormMessage />
                                 </FormItem>

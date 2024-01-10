@@ -1,9 +1,10 @@
+import { Checkbox } from '../ui/checkbox';
 import { Input } from '@/components/ui/input';
 import {
     type Participant,
     useWeeklyParticipantsStore,
 } from '@/hooks/stores/useWeeklyParticipantsStore';
-import { MoreHorizontalIcon, PencilIcon, XIcon } from 'lucide-react';
+import { CheckIcon, MoreHorizontalIcon, PencilIcon, XCircleIcon } from 'lucide-react';
 import { useState } from 'react';
 import { Draggable, type DraggableProps } from 'react-beautiful-dnd';
 
@@ -13,6 +14,7 @@ export const DraggableEditSeedItem = ({
 }: Omit<DraggableProps, 'children'> & { readonly participant: Participant }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [tag, setTag] = useState(participant.tag);
+    const [checked, setChecked] = useState(false);
 
     const { update, remove } = useWeeklyParticipantsStore();
 
@@ -26,7 +28,7 @@ export const DraggableEditSeedItem = ({
             return;
         }
 
-        update(participant.id, trimmedTag);
+        update(participant.id, { tag: trimmedTag });
         setIsEditing(false);
     };
 
@@ -57,6 +59,7 @@ export const DraggableEditSeedItem = ({
                         <div className="shrink-0">
                             <MoreHorizontalIcon height="24" />
                         </div>
+
                         <div className="min-w-0 flex-1 h-7 flex items-center">
                             {isEditing ? (
                                 <Input
@@ -75,11 +78,23 @@ export const DraggableEditSeedItem = ({
                                 </p>
                             )}
                         </div>
-                        <div className="cursor-pointer shrink-0 invisible group-hover:visible">
+                        <div className="items-center space-x-2 hidden group-hover:flex">
+                            <Checkbox
+                                onCheckedChange={checkedState =>
+                                    setChecked(
+                                        checkedState === 'indeterminate' ? false : checkedState,
+                                    )
+                                }
+                            />
+                        </div>
+                        <div className="flex items-center space-x-2 group-hover:hidden">
+                            {checked ? <CheckIcon height="24" /> : null}
+                        </div>
+                        <div className="cursor-pointer shrink-0 hidden group-hover:block">
                             <PencilIcon height="24" onClick={handleTextEditAction} />
                         </div>
-                        <div className="cursor-pointer shrink-0 invisible group-hover:visible">
-                            <XIcon height="24" onClick={() => remove(participant.id)} />
+                        <div className="cursor-pointer shrink-0 hidden group-hover:block">
+                            <XCircleIcon height="24" onClick={() => remove(participant.id)} />
                         </div>
                     </div>
                 </li>

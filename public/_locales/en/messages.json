@@ -41,6 +41,15 @@
   "settingsGuildIdDescription": {
     "message": "The ID of the Discord guild you want to use the extension for."
   },
+  "settingsFillerTagLabel": {
+    "message": "Filler Tag"
+  },
+  "settingsFillerTagPlaceholder": {
+    "message": "Filler tag"
+  },
+  "settingsFillerTagDescription": {
+    "message": "Tag to be filled in odd seeding for platforms like Challonge."
+  },
   "settingsReset": {
     "message": "Reset"
   },
@@ -61,6 +70,15 @@
   },
   "seedingTitle": {
     "message": "Participant seeding"
+  },
+  "seedingTotalParticipants": {
+    "message": "$COUNT$ total",
+    "placeholders": {
+      "COUNT": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
   },
   "seedingAddParticipantDescription": {
     "message": "Add participant"
