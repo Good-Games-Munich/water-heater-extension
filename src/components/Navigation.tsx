@@ -1,3 +1,4 @@
+import { useSettingsStore } from '../hooks/stores/useSettingsStore';
 import {
     NavigationMenu,
     NavigationMenuItem,
@@ -17,6 +18,7 @@ import {
 import { Link } from 'react-router-dom';
 
 export const Navigation = () => {
+    const { settings } = useSettingsStore();
     return (
         <NavigationMenu className="m-auto mt-4 mb-4">
             <NavigationMenuList>
@@ -41,33 +43,37 @@ export const Navigation = () => {
                 <NavigationMenuItem>
                     <NavigationMenuLink
                         className={navigationMenuTriggerStyle()}
-                        href="https://discord.com/invite/P9HRxenvex"
+                        href={`https://discord.com/channels/${settings.guildId}`}
                         target="_blank"
                     >
                         <MessageCircleHeartIcon className="mr-2 h-4 w-4" />
                         {chrome.i18n.getMessage('navigationDiscord')}
                     </NavigationMenuLink>
                 </NavigationMenuItem>
-                <NavigationMenuItem>
-                    <NavigationMenuLink
-                        className={navigationMenuTriggerStyle()}
-                        href="https://wiki.ggmunich.de/"
-                        target="_blank"
-                    >
-                        <BookOpenTextIcon className="mr-2 h-4 w-4" />
-                        {chrome.i18n.getMessage('navigationWiki')}
-                    </NavigationMenuLink>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                    <NavigationMenuLink
-                        className={navigationMenuTriggerStyle()}
-                        href="https://vault.ggmunich.de/"
-                        target="_blank"
-                    >
-                        <LockIcon className="mr-2 h-4 w-4" />
-                        {chrome.i18n.getMessage('navigationVault')}
-                    </NavigationMenuLink>
-                </NavigationMenuItem>
+                {settings.wikiUrl && (
+                    <NavigationMenuItem>
+                        <NavigationMenuLink
+                            className={navigationMenuTriggerStyle()}
+                            href={settings.wikiUrl}
+                            target="_blank"
+                        >
+                            <BookOpenTextIcon className="mr-2 h-4 w-4" />
+                            {chrome.i18n.getMessage('navigationWiki')}
+                        </NavigationMenuLink>
+                    </NavigationMenuItem>
+                )}
+                {settings.passwordManagerUrl && (
+                    <NavigationMenuItem>
+                        <NavigationMenuLink
+                            className={navigationMenuTriggerStyle()}
+                            href={settings.passwordManagerUrl}
+                            target="_blank"
+                        >
+                            <LockIcon className="mr-2 h-4 w-4" />
+                            {chrome.i18n.getMessage('navigationVault')}
+                        </NavigationMenuLink>
+                    </NavigationMenuItem>
+                )}
                 <NavigationMenuItem>
                     <Link className={navigationMenuTriggerStyle()} to="/settings">
                         <SettingsIcon className="mr-2 h-4 w-4" />

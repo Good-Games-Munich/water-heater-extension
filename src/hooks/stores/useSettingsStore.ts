@@ -4,6 +4,8 @@ import { persist } from 'zustand/middleware';
 export interface Settings {
     fillerTag: string;
     guildId: string;
+    passwordManagerUrl?: string;
+    wikiUrl?: string;
 }
 
 interface Store {
@@ -17,6 +19,8 @@ export const useSettingsStore = create(
             settings: {
                 guildId: '667124403695517741',
                 fillerTag: 'Bye',
+                passwordManagerUrl: 'https://vault.ggmunich.de/',
+                wikiUrl: 'https://wiki.ggmunich.de/',
             },
             update: settings => set(state => ({ settings: { ...state.settings, ...settings } })),
         }),

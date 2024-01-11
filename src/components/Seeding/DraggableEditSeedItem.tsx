@@ -1,4 +1,5 @@
 import { Checkbox } from '../ui/checkbox';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '../ui/hover-card';
 import { Input } from '@/components/ui/input';
 import {
     type Participant,
@@ -78,23 +79,49 @@ export const DraggableEditSeedItem = ({
                                 </p>
                             )}
                         </div>
+                        <div className="cursor-pointer shrink-0 hidden group-hover:block">
+                            <HoverCard>
+                                <HoverCardTrigger>
+                                    <PencilIcon height="24" onClick={handleTextEditAction} />
+                                </HoverCardTrigger>
+                                <HoverCardContent>
+                                    {chrome.i18n.getMessage('seedingEditDescription')}
+                                </HoverCardContent>
+                            </HoverCard>
+                        </div>
                         <div className="items-center space-x-2 hidden group-hover:flex">
-                            <Checkbox
-                                onCheckedChange={checkedState =>
-                                    setChecked(
-                                        checkedState === 'indeterminate' ? false : checkedState,
-                                    )
-                                }
-                            />
+                            <HoverCard>
+                                <HoverCardTrigger>
+                                    <Checkbox
+                                        onCheckedChange={checkedState =>
+                                            setChecked(
+                                                checkedState === 'indeterminate'
+                                                    ? false
+                                                    : checkedState,
+                                            )
+                                        }
+                                    />
+                                </HoverCardTrigger>
+                                <HoverCardContent className="w-auto">
+                                    {chrome.i18n.getMessage('seedingCheckboxDescription')}
+                                </HoverCardContent>
+                            </HoverCard>
                         </div>
                         <div className="flex items-center space-x-2 group-hover:hidden">
                             {checked ? <CheckIcon height="24" /> : null}
                         </div>
                         <div className="cursor-pointer shrink-0 hidden group-hover:block">
-                            <PencilIcon height="24" onClick={handleTextEditAction} />
-                        </div>
-                        <div className="cursor-pointer shrink-0 hidden group-hover:block">
-                            <XCircleIcon height="24" onClick={() => remove(participant.id)} />
+                            <HoverCard>
+                                <HoverCardTrigger>
+                                    <XCircleIcon
+                                        height="24"
+                                        onClick={() => remove(participant.id)}
+                                    />
+                                </HoverCardTrigger>
+                                <HoverCardContent>
+                                    {chrome.i18n.getMessage('seedingRemoveDescription')}
+                                </HoverCardContent>
+                            </HoverCard>
                         </div>
                     </div>
                 </li>

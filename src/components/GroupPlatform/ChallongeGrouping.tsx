@@ -28,14 +28,17 @@ export const ChallongeGrouping = () => {
                     <Separator className="my-2" />
                     {pool.map(participant => (
                         <div className="flex w-full gap-2 my-1" key={participant.seed}>
-                            <div className="bg-secondary inline-block px-1 flex-grow-0 min-w-1 text-center select-none">
-                                <HoverCard>
-                                    <HoverCardTrigger>{participant.seed}</HoverCardTrigger>
-                                    <HoverCardContent>
-                                        {chrome.i18n.getMessage('seedingPositionTooltip')}
-                                    </HoverCardContent>
-                                </HoverCard>
-                            </div>
+                            <HoverCard>
+                                <HoverCardTrigger>
+                                    <div className="bg-secondary inline-block px-1 flex-grow-0 min-w-1 text-center select-none">
+                                        {participant.seed}
+                                    </div>
+                                </HoverCardTrigger>
+                                <HoverCardContent>
+                                    {chrome.i18n.getMessage('seedingPositionTooltip')}
+                                </HoverCardContent>
+                            </HoverCard>
+
                             <div className="flex-grow-1">{participant.tag}</div>
                         </div>
                     ))}

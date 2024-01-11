@@ -1,7 +1,7 @@
 {
   "name": "water-heater-extension",
   "private": true,
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "A browser extension for Good Games Munich to fix various sites for ease of use and help with TO stuff.",
   "scripts": {
     "dev": "vite",

@@ -1,8 +1,11 @@
 # Changelog
 
-## 2024-01-10 - 0.3.1
+## 2024-01-10 - 0.4.0
 
 -   Fix player filler to fill to largest group and not odd size
+-   Add URL setting to settings page
+-   Use Guild ID for discord link
+-   Small UI fixes
 
 ## 2024-01-10 - 0.3.0
 
