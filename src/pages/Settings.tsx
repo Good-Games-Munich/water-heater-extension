@@ -16,8 +16,10 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 const formSchema = z.object({
-    guildId: z.string(),
-    fillerTag: z.string(),
+    guildId: z.string().min(1),
+    fillerTag: z.string().min(1),
+    passwordManagerUrl: z.string().optional(),
+    wikiUrl: z.string().optional(),
 });
 
 export const Settings = () => {
@@ -31,9 +33,14 @@ export const Settings = () => {
     });
 
     const onSubmit = async (data: z.infer<typeof formSchema>) => {
-        update(data);
+        // Map empty values to undefined
+        const processedData = Object.fromEntries(
+            Object.entries(data).map(([key, value]) => [key, value === '' ? undefined : value]),
+        );
+
+        update(processedData);
         await queryClient.invalidateQueries();
-        form.reset(data);
+        form.reset(processedData);
     };
 
     return (
@@ -85,6 +92,54 @@ export const Settings = () => {
                                     </FormControl>
                                     <FormDescription>
                                         {chrome.i18n.getMessage('settingsFillerTagDescription')}
+                                    </FormDescription>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="passwordManagerUrl"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>
+                                        {chrome.i18n.getMessage('settingsPasswordManagerUrlLabel')}
+                                    </FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            placeholder={chrome.i18n.getMessage(
+                                                'settingsPasswordManagerUrlPlaceholder',
+                                            )}
+                                            {...field}
+                                        />
+                                    </FormControl>
+                                    <FormDescription>
+                                        {chrome.i18n.getMessage(
+                                            'settingsPasswordManagerUrlDescription',
+                                        )}
+                                    </FormDescription>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="wikiUrl"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>
+                                        {chrome.i18n.getMessage('settingsWikiUrlLabel')}
+                                    </FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            placeholder={chrome.i18n.getMessage(
+                                                'settingsWikiUrlPlaceholder',
+                                            )}
+                                            {...field}
+                                        />
+                                    </FormControl>
+                                    <FormDescription>
+                                        {chrome.i18n.getMessage('settingsWikiUrlDescription')}
                                     </FormDescription>
                                     <FormMessage />
                                 </FormItem>

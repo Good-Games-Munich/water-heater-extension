@@ -14,9 +14,36 @@ export const assignPools = (
 
     let direction = 1; // 1 for left to right, -1 for right to left
     let groupIndex = 0;
+    let seed = 1;
 
-    for (const [index, participant] of participants.entries()) {
-        groups[groupIndex].push({ tag: participant.tag, seed: index + 1 });
+    for (const participant of participants) {
+        groups[groupIndex].push({ tag: participant.tag, seed });
+
+        // Update group index and seed based on direction
+        groupIndex += direction;
+        seed++;
+
+        // Change direction if reaching the boundaries
+        if (groupIndex === numberGroups) {
+            groupIndex = numberGroups - 1;
+            direction = -1;
+        } else if (groupIndex === -1) {
+            groupIndex = 0;
+            direction = 1;
+        }
+    }
+
+    // Calculate the maximum group size
+    const maxGroupSize = Math.max(...groups.map(group => group.length));
+
+    // Fill up each group to the maximum size
+    while (true) {
+        const group = groups[groupIndex];
+
+        if (group.length < maxGroupSize) {
+            group.push({ tag: fillerTag, seed });
+            seed++;
+        }
 
         // Update group index based on direction
         groupIndex += direction;
@@ -29,23 +56,10 @@ export const assignPools = (
             groupIndex = 0;
             direction = 1;
         }
-    }
 
-    // Find the size of the largest group
-    let maxSize = groups[0].length;
-    for (const group of groups) {
-        if (group.length > maxSize) {
-            maxSize = group.length;
-        }
-    }
-
-    // Add filler participants to the groups that have fewer participants
-    for (const group of groups) {
-        while (group.length < maxSize) {
-            group.push({
-                tag: fillerTag,
-                seed: participants.length + 1 + group.length,
-            });
+        // Break the loop if all groups have been filled
+        if (groups.every(toCheckGroup => toCheckGroup.length === maxGroupSize)) {
+            break;
         }
     }
 

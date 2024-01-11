@@ -50,6 +50,24 @@
   "settingsFillerTagDescription": {
     "message": "Tag to be filled in odd seeding for platforms like Challonge."
   },
+  "settingsPasswordManagerUrlLabel": {
+    "message": "Password Manager URL"
+  },
+  "settingsPasswordManagerUrlPlaceholder": {
+    "message": "Password Manager URL"
+  },
+  "settingsPasswordManagerUrlDescription": {
+    "message": "URL to your password manager. Leave empty to disable."
+  },
+  "settingsWikiUrlLabel": {
+    "message": "Wiki URL"
+  },
+  "settingsWikiUrlPlaceholder": {
+    "message": "Wiki URL"
+  },
+  "settingsWikiUrlDescription": {
+    "message": "URL to your wiki. Leave empty to disable."
+  },
   "settingsReset": {
     "message": "Reset"
   },
@@ -81,13 +99,22 @@
     }
   },
   "seedingAddParticipantDescription": {
-    "message": "Add participant"
+    "message": "Add participant."
   },
   "seedingRemoveAllParticipantsDescription": {
-    "message": "Remove all participants from seeding"
+    "message": "Remove all participants from seeding."
   },
   "seedingFetchDiscordDescription": {
-    "message": "Fetch participants from Discord"
+    "message": "Fetch participants from Discord."
+  },
+  "seedingEditDescription": {
+    "message": "Edit participant tag."
+  },
+  "seedingCheckboxDescription": {
+    "message": "Checkbox to track something to your liking. Example would be payed status or attendance."
+  },
+  "seedingRemoveDescription": {
+    "message": "Remove participant."
   },
   "seedingDiscordReplaceAction": {
     "message": "Replace"
