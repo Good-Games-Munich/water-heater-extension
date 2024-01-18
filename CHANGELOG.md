@@ -1,5 +1,9 @@
 # Changelog
 
+## 2024-01-18 - 0.4.1
+
+-   Fix participant checkbox
+
 ## 2024-01-10 - 0.4.0
 
 -   Fix player filler to fill to largest group and not odd size

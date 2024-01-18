@@ -15,7 +15,6 @@ export const DraggableEditSeedItem = ({
 }: Omit<DraggableProps, 'children'> & { readonly participant: Participant }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [tag, setTag] = useState(participant.tag);
-    const [checked, setChecked] = useState(false);
 
     const { update, remove } = useWeeklyParticipantsStore();
 
@@ -93,12 +92,14 @@ export const DraggableEditSeedItem = ({
                             <HoverCard>
                                 <HoverCardTrigger>
                                     <Checkbox
+                                        checked={participant.checked}
                                         onCheckedChange={checkedState =>
-                                            setChecked(
-                                                checkedState === 'indeterminate'
-                                                    ? false
-                                                    : checkedState,
-                                            )
+                                            update(participant.id, {
+                                                checked:
+                                                    checkedState === 'indeterminate'
+                                                        ? false
+                                                        : checkedState,
+                                            })
                                         }
                                     />
                                 </HoverCardTrigger>
@@ -108,7 +109,7 @@ export const DraggableEditSeedItem = ({
                             </HoverCard>
                         </div>
                         <div className="flex items-center space-x-2 group-hover:hidden">
-                            {checked ? <CheckIcon height="24" /> : null}
+                            {participant.checked ? <CheckIcon height="24" /> : null}
                         </div>
                         <div className="cursor-pointer shrink-0 hidden group-hover:block">
                             <HoverCard>

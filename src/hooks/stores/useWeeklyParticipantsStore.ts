@@ -3,8 +3,8 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 export interface Participant {
+    checked: boolean;
     id: string;
-    payed: boolean;
     tag: string;
 }
 
@@ -57,7 +57,7 @@ export const useWeeklyParticipantsStore = create(
                     result.unshift({
                         id: uuidv4(),
                         tag,
-                        payed: false,
+                        checked: false,
                     });
 
                     return { participants: result };
@@ -69,7 +69,7 @@ export const useWeeklyParticipantsStore = create(
                         result.unshift({
                             id: uuidv4(),
                             tag,
-                            payed: false,
+                            checked: false,
                         });
                     });
 
