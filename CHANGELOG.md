@@ -1,5 +1,9 @@
 # Changelog
 
+## 2024-01-20 - 0.4.2
+
+-   Add id for firefox
+
 ## 2024-01-18 - 0.4.1
 
 -   Fix participant checkbox

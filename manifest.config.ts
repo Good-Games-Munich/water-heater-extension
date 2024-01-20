@@ -24,6 +24,11 @@ export const manifest = defineManifest(async environment => ({
     version_name: version,
     permissions: ['tabs'],
     default_locale: 'en',
+    browser_specific_settings: {
+        gecko: {
+            id: '{123e4567-e89b-12d3-a456-426614174000}',
+        },
+    },
     action: {
         default_popup: 'popup.html',
     },
