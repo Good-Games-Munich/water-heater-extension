@@ -61,7 +61,7 @@
     "@beuluis/eslint-config": "2.0.1",
     "@beuluis/hook-cli": "1.2.1",
     "@crxjs/vite-plugin": "1.0.14",
-    "@types/chrome": "0.0.254",
+    "@types/chrome": "0.0.278",
     "@types/react": "18.0.0",
     "@types/react-beautiful-dnd": "13.1.7",
     "@types/react-dom": "18.0.0",
